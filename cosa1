@@ -1,4 +1,10 @@
-  GNU nano 6.2                                                                           BloqueVIShell-Final/mySpace.sh                                                                                     
+#!/bin/bash
+#entrada es $* devuelve toda la lista
+#el numero de args es #$
+
+unit=byte
+quant=$1
+folder="."
 
 if [ $# -lt 2 -o $# -gt 3 ] ; then
         echo -e  "Error. Modo de uso: ./mySpace.sh umbral unidad [ directorio ]"
@@ -38,10 +44,10 @@ else
 
 fi
 
-
-for element in "$folder"; do
-        let filesize=element | cut -f5 -d " " 
-        echo $filesize
+#utilizar el while del flipped 6/5/26
+for element in "$folder"/* ; do
+        let filesize=ls -l element | cut -f5 -d " "
+echo $filesize
         done
 
 echo $unit
