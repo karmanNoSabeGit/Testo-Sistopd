@@ -1,0 +1,50 @@
+  GNU nano 6.2                                                                           BloqueVIShell-Final/mySpace.sh                                                                                     
+
+if [ $# -lt 2 -o $# -gt 3 ] ; then
+        echo -e  "Error. Modo de uso: ./mySpace.sh umbral unidad [ directorio ]"
+        exit 1
+fi
+case $1 in
+        *[!0-9]*)
+                echo -e "Es no digito"
+                exit 1;;
+esac
+
+case $2 in
+        b|B)
+                echo -e "son bytes";;
+        k|K)
+                echo -e "son kilobytes"
+                let unit=kilo
+                let quant=quant*1024;;
+        m|M)
+                echo -e "son megabytes"
+                let unit=mega
+                let quant=quant*1024*1024;;
+        *)
+                echo -e "Unidad de medida no válida: By. Se requiere b, B, k, K, m o M"
+                exit 1
+esac
+
+if [ $# -eq 2 ]; then
+        echo -e "no hay tercer elemento"
+
+elif [ $3 -d ]; then
+        echo -e "rm pero el directorio"
+        folder=$3
+else
+        echo -e "no es un directorio Lil Gerry"
+
+
+fi
+
+
+for element in "$folder"; do
+        let filesize=element | cut -f5 -d " " 
+        echo $filesize
+        done
+
+echo $unit
+echo $quant
+echo "fin prog"
+
